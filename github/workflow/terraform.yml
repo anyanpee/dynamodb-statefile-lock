@@ -27,7 +27,7 @@ jobs:
     
       - name: Initialize Terraform
         run: terraform init
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ dynamodb-lock.working-directory }}
 
       - name: Terraform Validate
         run: terraform validate
