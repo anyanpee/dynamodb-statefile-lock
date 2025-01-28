@@ -2,7 +2,7 @@
 
 This Terraform project creates an S3 bucket for storing Terraform state files and a DynamoDB table for state locking. The S3 bucket is configured with versioning, server-side encryption, and strict access controls to ensure security.
 
-## Resources Created
+## Resources Created 1
 
 1. **S3 Bucket**:
    - Name: `terraform-backend-bucket08` (replace with your unique bucket name).
