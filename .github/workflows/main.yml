@@ -1,42 +1,42 @@
-name: Deploy Dynamodb Lock 
+name: Terraform Pipeline
 
 on:
   push:
     branches:
-      - master
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   terraform:
-    name: Deploy Portfolio Website
+    name: Terraform
     runs-on: ubuntu-latest
-    env:
-      working-directory: terraform
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v3
-          
-      - name: "Configure AWS Credentials"
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: hashicorp/setup-terraform@v2
         with:
-          aws-region: "eu-west-1"
+          terraform_version: 1.5.0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
-      - name: Initialize Terraform
+          aws-region: us-east-1
+
+      - name: Terraform Init
         run: terraform init
-        working-directory: ${{ terraform.working-directory }}
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ${{ terraform.working-directory }}
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ${{ terraform.working-directory }}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ${{ terraform.working-directory }}
