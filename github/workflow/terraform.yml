@@ -3,7 +3,7 @@ name: Deploy Dynamodb Lock
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   terraform:
