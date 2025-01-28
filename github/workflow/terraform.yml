@@ -31,12 +31,12 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ dynamodb-lock.working-directory }}
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ dynamodb-lock.working-directory }}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ${{ env.working-directory }}
+        working-directory: ${{ dynamodb-lock.working-directory }}
